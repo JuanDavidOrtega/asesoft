@@ -13,15 +13,15 @@ class asesoresController extends Controller
         $asesores = asesore::paginate();
         return view('asesores.index', compact('asesores'));
     }
-
+    
     public function create()
     {
         return view('asesores.create');
     }
     
-    public function show($asesores)
+    public function show($id)
     {
-        
-        return view('asesores.show', compact('asesores'));
+        $asesore = asesore::find($id);
+        return view('asesores.show', compact('asesore'));
     }
 }

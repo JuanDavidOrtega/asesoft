@@ -19,8 +19,9 @@
     <tbody>
         @foreach($asesores as $asesore)
             <tr>
-                {{--<td><a href="{{route('asesores.show', $asesore->id_asesores )}}">{{$asesore->id_asesores }}</a></td>--}}
-                <td>{{ $asesore->id_asesores }}</td>
+                <td><a href="{{route('asesores.show', $asesore->id_asesores )}}">{{$asesore->id_asesores }}</a></td>
+                {{--<td>{{ $asesore->id_asesores }}</td>--}}
+                {{--{{route('asesores.show', $asesore->id_asesores )}}--}}
                 <td>{{ $asesore->nombre }}</td>
                 <td>{{ $asesore->apellido }}</td>
                 <td>{{ $asesore->correo }}</td>

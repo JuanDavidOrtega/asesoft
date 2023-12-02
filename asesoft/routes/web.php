@@ -21,6 +21,6 @@ Route::get('/', function () {
 Route::controller(AsesoresController::class)->group(function () {
 Route::get('asesores', 'index')->name('asesores.index');
 Route::get('asesores/create', 'create')->name('asesores.create');
-Route::get('asesores/{asesore}', 'show')->name('asesores.show');
+Route::get('asesores/{id}', 'show')->name('asesores.show');
 });
 
