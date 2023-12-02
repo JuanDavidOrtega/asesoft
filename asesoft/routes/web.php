@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use namespace App\Http\Controllers\asesoresController;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\asesoresController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get()
+Route::controller(AsesoresController::class)->group(function () {
+Route::get('asesores', 'index')->name('asesores.index');
+Route::get('asesores/create', 'create')->name('asesores.create');
+Route::get('asesores/{asesore}', 'show')->name('asesores.show');
+});
+
