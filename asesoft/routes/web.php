@@ -3,6 +3,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\asesoresController;
+use Illuminate\Routing\Route as RoutingRoute;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,8 @@ Route::get('/', function () {
 Route::controller(AsesoresController::class)->group(function () {
 Route::get('asesores', 'index')->name('asesores.index');
 Route::get('asesores/create', 'create')->name('asesores.create');
+Route::post('asesores', 'Fcreate')->name('asesores.Fcreate');
 Route::get('asesores/{id}', 'show')->name('asesores.show');
+Route::get('asesores/{id}/edit', 'edit')->name('asesores.edit');
+Route::put('asesores/{id}', 'update')->name('asesores.update');
 });
-

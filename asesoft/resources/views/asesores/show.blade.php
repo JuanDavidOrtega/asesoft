@@ -3,7 +3,12 @@
 
 @section('title','Detalles del asesor') 
 @section('body')
+
      <h1>Detalles de  {{$asesore->nombre}}</h1>
+
+     <a href="{{route('asesores.index')}}">Volver a lista asesores</a>
+     <br>
+     <a href="{{route('asesores.edit', $asesore)}}">Editar Asesor</a>
 
         <p>ID: {{ $asesore->id_asesores }}</p>
         <p>Nombre: {{ $asesore->nombre }}</p>
