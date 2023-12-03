@@ -27,4 +27,5 @@ Route::post('asesores', 'Fcreate')->name('asesores.Fcreate');
 Route::get('asesores/{id}', 'show')->name('asesores.show');
 Route::get('asesores/{id}/edit', 'edit')->name('asesores.edit');
 Route::put('asesores/{id}', 'update')->name('asesores.update');
+route::delete('asesores/{id}', 'destroy')->name('asesores.destroy');
 });

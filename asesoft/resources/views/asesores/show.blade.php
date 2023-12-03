@@ -1,4 +1,3 @@
-<!-- resources/views/asesores/show.blade.php -->
 @extends('layouts.plantilla')
 
 @section('title','Detalles del asesor') 
@@ -15,9 +14,12 @@
         <p>Apellido: {{ $asesore->apellido }}</p>
         <p>correo: {{ $asesore->correo }}</p>
         <p>Tienda: {{ $asesore->id_tienda }}</p>
-        <!-- Agrega más detalles según tu modelo de datos -->
 
-     <a href="{{ route('asesores.index') }}">Volver a la lista de asesores</a>
+     <form action="{{route('asesores.destroy', $asesore)}}" method="POST">
+      @csrf
+      @method('delete')
+      <button type="submit"> Eliminar Asesor</button>
+     </form>
  
 @endsection
 

@@ -74,4 +74,9 @@ class asesoresController extends Controller
         $id->save();
         return redirect()->route('asesores.show', $id);
     }
+
+    public function destroy(asesore $id){
+        $id->delete();
+        return redirect()->route('asesores.index');
+    }
 }
