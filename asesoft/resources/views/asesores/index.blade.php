@@ -4,7 +4,8 @@
 @section('title','listado de asesores') 
 @section('body')
   <h1>Lista de Asesores</h1>
-  <a href="{{route('asesores.create')}}">Crear Nuevo Asesor </a>
+  <a href="{{route('home')}}">Dashboard</a><br><br>
+  <a href="{{route('asesores.create')}}">Crear Nuevo Asesor </a><br><br>
 
   <table>
     <thead>

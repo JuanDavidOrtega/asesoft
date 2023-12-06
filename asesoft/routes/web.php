@@ -29,3 +29,7 @@ Route::get('asesores/{id}/edit', 'edit')->name('asesores.edit');
 Route::put('asesores/{id}', 'update')->name('asesores.update');
 route::delete('asesores/{id}', 'destroy')->name('asesores.destroy');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
