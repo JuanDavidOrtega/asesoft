@@ -1,42 +1,31 @@
 <?php
+// app/Http/Controllers/Auth/RegisterController.php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-use app\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class ApiController extends Controller
 {
-    public function users(Request $request){
-        $users = User::all();
-        return response()->json($users);
+    use RegistersUsers, HasApiTokens;
 
+   
+
+    protected function create(array $data)
+    {
+        // Crea un nuevo usuario
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        // Crea un token de acceso para el usuario
+        $token = $user->createToken('registration-token')->plainTextToken;
+
+        return response()->json(['token' => $token]);
     }
-
-    public function Login(Request $request){
-
-        $response = ["status"=>0, "msg"=>""];
-        $data = json_decode($request->getContent());
-        $user = User::where('email',$data->email)->first();
-        if($user){
-            if(Hash::check($data->password, $user->password)){
-
-                $token = $user->createToken("example");
-                $response["status"] = 1;
-                $response["msg"] = $token->plainTextToken;
-
-            }else{
-
-                $response["msg"] = "Credenciales incorrectas.";
-            }
-
-        }else{
-            
-            $response["msg"] = "Usuario no encontrado";
-        }
-        return response()->json($response);
-    }
-
 }

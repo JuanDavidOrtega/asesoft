@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
@@ -23,4 +22,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         //
     }
+   
 }
