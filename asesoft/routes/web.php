@@ -1,9 +1,8 @@
 <?php
 
-
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\asesoresController;
-use Illuminate\Routing\Route as RoutingRoute;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,25 +10,26 @@ use Illuminate\Routing\Route as RoutingRoute;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Route::controller(AsesoresController::class)->group(function () {
-Route::get('asesores', 'index')->name('asesores.index');
-Route::get('asesores/create', 'create')->name('asesores.create');
-Route::post('asesores', 'Fcreate')->name('asesores.Fcreate');
-Route::get('asesores/{id}', 'show')->name('asesores.show');
-Route::get('asesores/{id}/edit', 'edit')->name('asesores.edit');
-Route::put('asesores/{id}', 'update')->name('asesores.update');
-route::delete('asesores/{id}', 'destroy')->name('asesores.destroy');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
